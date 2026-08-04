@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<div class="wrap">
+  <header class="page-head reveal">
+    <div class="eyebrow">{{ page.eyebrow | default: page.title | downcase }}</div>
+    <h1 class="page-title">{{ page.title }}</h1>
+    {%- if page.subtitle %}<p class="page-sub">{{ page.subtitle }}</p>{% endif -%}
+  </header>
+
+  <div class="prose reveal">
+    {{ content }}
+  </div>
+</div>

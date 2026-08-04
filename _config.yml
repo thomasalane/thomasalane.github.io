@@ -1,4 +1,5 @@
 title: Thomas Alane
+tagline: Data science, modeling & automation
 email: thomassouzaalane@gmail.com
 description: >-
   Data analysis, statistical modeling, and process automation — plus notes on
@@ -6,15 +7,23 @@ description: >-
 baseurl: ""
 url: "https://thomasalane.github.io"
 
-theme: minima
-markdown: kramdown
-
 github_username: thomasalane
+linkedin_url: "https://www.linkedin.com/in/thomassouzaalane"
 
-header_pages:
-  - projects.md
-  - blog.md
+markdown: kramdown
+kramdown:
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+permalink: /blog/:year/:month/:day/:title/
 
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

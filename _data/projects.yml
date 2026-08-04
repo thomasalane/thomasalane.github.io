@@ -1,0 +1,28 @@
+# Add a new project by appending an entry here — the projects page renders it automatically.
+- name: Menu Extraction Agent
+  repo: Menu-Extraction-Agent
+  url: https://github.com/thomasalane/Menu-Extraction-Agent
+  summary: >-
+    A Streamlit app that extracts structured data — items, prices, categories —
+    from photos of restaurant menus using Google Gemini. Includes image quality
+    validation, confidence scoring per field, manual review/edit, and CSV/JSON export.
+  stack: [Python, Streamlit, Google Gemini]
+  featured: true
+
+- name: ProjetoLM
+  repo: ProjetoLM
+  url: https://github.com/thomasalane/ProjetoLM
+  summary: >-
+    Data analysis project developed for an academic league, studying sales data
+    in the auto parts category — regional trends, top products, and category performance.
+  stack: [Python, Pandas, Data viz]
+  featured: true
+
+- name: Modelagem Computacional
+  repo: Modelagem-Computacional
+  url: https://github.com/thomasalane/Modelagem-Computacional
+  summary: >-
+    Numerical methods coursework — Taylor series, root-finding, linear systems,
+    interpolation, numerical integration, and ODEs, each with worked examples and analysis.
+  stack: [Python, Jupyter, NumPy]
+  featured: true

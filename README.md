@@ -1,17 +1,22 @@
 # thomasalane.github.io
 
-Personal site and blog, built with [Jekyll](https://jekyllrb.com/) and the
-`minima` theme. GitHub Pages builds it automatically on every push to `main` —
-no CI or manual build step needed.
+Personal site and blog. Built with [Jekyll](https://jekyllrb.com/) and a custom
+dark theme (no third-party theme gem). GitHub Pages builds it automatically on
+every push to `main` — no CI or manual build step.
 
 ## Structure
 
 ```
-_config.yml     site settings, nav, theme
-index.md        home page
-projects.md     projects list
-blog.md         post index
-_posts/         blog posts (Markdown)
+_config.yml            site settings
+_data/projects.yml     project list — edit this to add a project
+_layouts/              default, page, post
+_includes/             head, header, footer
+assets/css/main.css    the whole theme
+assets/js/main.js      node-network canvas, scroll reveal, cursor glow, terminal typing
+index.html             home page
+projects.html          renders _data/projects.yml
+blog.html              post index
+_posts/                blog posts (Markdown)
 ```
 
 ## Adding a post
@@ -28,7 +33,22 @@ date: 2026-08-04
 Post content in Markdown.
 ```
 
-Commit and push — the post appears on the site in a minute or two.
+Commit and push — it appears on the site a minute or two later.
+
+## Adding a project
+
+Append an entry to `_data/projects.yml`:
+
+```yaml
+- name: Project Name
+  repo: repo-name
+  url: https://github.com/thomasalane/repo-name
+  summary: >-
+    One or two sentences about what it does.
+  stack: [Python, Whatever]
+```
+
+The projects page and the home page pick it up automatically.
 
 ## Running locally (optional)
 

@@ -1,0 +1,18 @@
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}">
+      <span class="brand-prompt">~/</span><span class="brand-name">thomasalane</span><span class="caret"></span>
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+    <label for="nav-toggle" class="nav-burger" aria-label="Menu"><span></span><span></span></label>
+
+    <nav class="site-nav">
+      {%- assign p = page.url -%}
+      <a href="{{ '/' | relative_url }}" class="nav-link {% if p == '/' %}is-active{% endif %}">home</a>
+      <a href="{{ '/projects/' | relative_url }}" class="nav-link {% if p contains '/projects' %}is-active{% endif %}">projects</a>
+      <a href="{{ '/blog/' | relative_url }}" class="nav-link {% if p contains '/blog' %}is-active{% endif %}">blog</a>
+    </nav>
+  </div>
+  <div class="header-line"></div>
+</header>

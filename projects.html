@@ -1,0 +1,29 @@
+---
+layout: default
+title: Projects
+permalink: /projects/
+---
+
+<div class="wrap">
+  <header class="page-head reveal">
+    <div class="eyebrow">// portfolio</div>
+    <h1 class="page-title">Projects</h1>
+    <p class="page-sub">A selection of projects I've worked on.</p>
+  </header>
+
+  <div class="card-grid card-grid-wide">
+    {%- for pr in site.data.projects -%}
+    <a class="card tilt reveal" href="{{ pr.url }}" rel="noopener" style="--d: {{ forloop.index0 | times: 80 }}ms">
+      <span class="card-glow" aria-hidden="true"></span>
+      <div class="card-num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</div>
+      <h2 class="card-title">{{ pr.name }}</h2>
+      <p class="card-desc">{{ pr.summary }}</p>
+      <div class="tags">
+        {%- for s in pr.stack -%}<span class="tag">{{ s }}</span>{%- endfor -%}
+      </div>
+      <div class="card-repo"><span class="hash">&gt;</span> {{ pr.repo }}</div>
+      <span class="card-arrow">&rarr;</span>
+    </a>
+    {%- endfor -%}
+  </div>
+</div>

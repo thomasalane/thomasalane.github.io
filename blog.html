@@ -1,0 +1,33 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+---
+
+<div class="wrap">
+  <header class="page-head reveal">
+    <div class="eyebrow">// writing</div>
+    <h1 class="page-title">Blog</h1>
+    <p class="page-sub">Notes on data science, blockchain, cryptography and whatever else I'm digging into.</p>
+  </header>
+
+  {%- if site.posts.size > 0 -%}
+  <div class="entry-list">
+    {%- for post in site.posts -%}
+    <a class="entry reveal" href="{{ post.url | relative_url }}" style="--d: {{ forloop.index0 | times: 70 }}ms">
+      <span class="card-glow" aria-hidden="true"></span>
+      <div class="entry-meta">
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+        <span class="sep">/</span>
+        <span>{{ post.content | number_of_words | divided_by: 200 | plus: 1 }} min</span>
+      </div>
+      <h2 class="entry-title">{{ post.title }}</h2>
+      <p class="entry-excerpt">{{ post.excerpt | strip_html | truncatewords: 34 }}</p>
+      <span class="entry-more">read <span class="arw">&rarr;</span></span>
+    </a>
+    {%- endfor -%}
+  </div>
+  {%- else -%}
+  <p class="empty">No posts yet.</p>
+  {%- endif -%}
+</div>
