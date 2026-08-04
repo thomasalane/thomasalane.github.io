@@ -6,7 +6,7 @@ permalink: /projects/
 
 A selection of projects I've worked on.
 
-## [Menu Extraction Agent](https://github.com/thomasalane/menu-extraction-agent)
+## [Menu Extraction Agent](https://github.com/thomasalane/Menu-Extraction-Agent)
 
 A Streamlit app that extracts structured data — items, prices, categories —
 from photos of restaurant menus using Google Gemini. Includes image quality
