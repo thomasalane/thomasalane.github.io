@@ -10,7 +10,7 @@ title: Home
 
       <h1 class="hero-title reveal">
         <span class="line">Hey, I'm</span>
-        <span class="line accent">Thomas Alane<span class="caret caret-lg"></span></span>
+        <span class="line accent">Thomas<span class="caret caret-lg"></span></span>
       </h1>
 
       <p class="hero-lede reveal">
@@ -40,22 +40,6 @@ title: Home
         <pre class="term-body"><code id="term-out"></code><span class="caret term-caret"></span></pre>
       </div>
     </aside>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <h2 class="sec-title"><span class="hash">#</span> exploring</h2>
-      <p class="sec-sub">Areas I'm actively reading and building around.</p>
-    </div>
-
-    <div class="chip-grid">
-      {%- assign topics = "Blockchain & DeFi|Applied cryptography|Security|Bitcoin as a monetary system|Statistical modeling|Process automation" | split: "|" -%}
-      {%- for t in topics -%}
-      <div class="chip reveal" style="--d: {{ forloop.index0 | times: 60 }}ms">{{ t }}</div>
-      {%- endfor -%}
-    </div>
   </div>
 </section>
 

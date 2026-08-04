@@ -317,25 +317,6 @@ a:hover .arw { transform: translateX(4px); }
 }
 .sec-more:hover { opacity: 0.75; }
 
-/* chips */
-
-.chip-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-.chip {
-  font-family: var(--mono); font-size: 0.79rem;
-  color: var(--muted);
-  border: 1px solid var(--line);
-  background: var(--card);
-  border-radius: 7px;
-  padding: 8px 14px;
-  transition: color 0.25s var(--ease), border-color 0.25s var(--ease),
-              transform 0.25s var(--ease);
-}
-.chip:hover {
-  color: var(--accent);
-  border-color: var(--line-hi);
-  transform: translateY(-2px);
-}
-
 /* ---------- cards ---------- */
 
 .card-grid {
