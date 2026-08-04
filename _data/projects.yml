@@ -1,7 +1,7 @@
 # Add a new project by appending an entry here — the projects page renders it automatically.
 - name: Menu Extraction Agent
-  repo: Menu-Extraction-Agent
-  url: https://github.com/thomasalane/Menu-Extraction-Agent
+  repo: menu-extraction-agent
+  url: https://github.com/thomasalane/menu-extraction-agent
   summary: >-
     A Streamlit app that extracts structured data — items, prices, categories —
     from photos of restaurant menus using Google Gemini. Includes image quality
