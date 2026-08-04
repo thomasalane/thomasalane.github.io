@@ -286,7 +286,7 @@ a:hover .arw { transform: translateX(4px); }
   font-size: 0.8rem; line-height: 1.85;
   color: var(--muted);
   white-space: pre-wrap; word-break: break-word;
-  min-height: 268px;
+  min-height: 352px; /* holds the full typed-out output, so it doesn't jump */
 }
 .term-body .c-prompt { color: var(--accent-2); }
 .term-body .c-cmd    { color: var(--text); }
@@ -651,7 +651,7 @@ a:hover .arw { transform: translateX(4px); }
   .nav-link { padding: 15px 24px; border-top: 1px solid var(--line); font-size: 0.9rem; }
 
   .hero-title { font-size: 2.3rem; }
-  .term-body { min-height: 210px; font-size: 0.73rem; }
+  .term-body { min-height: 320px; font-size: 0.73rem; }
   .section { padding: 44px 0; }
   .page-head { padding: 52px 0 30px; }
   .footer-inner { flex-direction: column; gap: 22px; }

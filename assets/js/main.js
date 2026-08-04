@@ -157,29 +157,38 @@
       { t: '<span class="c-prompt">$</span> <span class="c-dim">_</span>' }
     ];
 
+    var full = lines.map(function (l) { return l.t; }).join('\n');
+
     if (reduced) {
-      out.innerHTML = lines.map(function (l) { return l.t; }).join('\n');
+      out.innerHTML = full;
       return;
     }
 
+    // Accumulate raw HTML in a string and re-render from it. Appending to
+    // innerHTML directly would reserialize the DOM, auto-closing any tag
+    // still being typed and pushing the rest of the line outside its span.
+    var acc = '';
     var li = 0;
+
     function nextLine() {
       if (li >= lines.length) return;
       var raw = lines[li].t;
-      // type char by char, but emit whole HTML tags at once
-      var i = 0, buf = '';
+      var i = 0;
+
       (function type() {
         if (i >= raw.length) {
-          out.innerHTML += '\n';
+          acc += '\n';
+          out.innerHTML = acc;
           li++;
-          setTimeout(nextLine, 130);
+          setTimeout(nextLine, 90);
           return;
         }
-        if (raw[i] === '<') {
+        var buf;
+        if (raw[i] === '<') {                       // emit whole tags at once
           var close = raw.indexOf('>', i);
           buf = raw.slice(i, close + 1);
           i = close + 1;
-        } else if (raw[i] === '&') {
+        } else if (raw[i] === '&') {                // and whole entities
           var semi = raw.indexOf(';', i);
           buf = raw.slice(i, semi + 1);
           i = semi + 1;
@@ -187,11 +196,12 @@
           buf = raw[i];
           i++;
         }
-        out.innerHTML += buf;
-        setTimeout(type, 14);
+        acc += buf;
+        out.innerHTML = acc;
+        setTimeout(type, 11);
       })();
     }
-    setTimeout(nextLine, 420);
+    setTimeout(nextLine, 380);
   }
 
   function boot() {
