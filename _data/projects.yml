@@ -9,18 +9,18 @@
   stack: [Python, Streamlit, Google Gemini]
   featured: true
 
-- name: ProjetoLM
-  repo: ProjetoLM
-  url: https://github.com/thomasalane/ProjetoLM
+- name: Auto Parts Sales Analysis
+  repo: auto-parts-sales-analysis
+  url: https://github.com/thomasalane/auto-parts-sales-analysis
   summary: >-
     Data analysis project developed for an academic league, studying sales data
     in the auto parts category — regional trends, top products, and category performance.
   stack: [Python, Pandas, Data viz]
   featured: true
 
-- name: Modelagem Computacional
-  repo: Modelagem-Computacional
-  url: https://github.com/thomasalane/Modelagem-Computacional
+- name: Numerical Methods
+  repo: numerical-methods
+  url: https://github.com/thomasalane/numerical-methods
   summary: >-
     Numerical methods coursework — Taylor series, root-finding, linear systems,
     interpolation, numerical integration, and ODEs, each with worked examples and analysis.
