@@ -53,7 +53,7 @@ layout: default
 
     <div class="card-grid">
       {%- for pr in site.data.projects limit: 3 -%}
-      <a class="card tilt reveal" href="{{ pr.url }}" rel="noopener" style="--d: {{ forloop.index0 | times: 80 }}ms">
+      <a class="card tilt reveal" href="{{ pr.url }}" target="_blank" rel="noopener noreferrer" style="--d: {{ forloop.index0 | times: 80 }}ms">
         <span class="card-glow" aria-hidden="true"></span>
         <div class="card-num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</div>
         <h3 class="card-title">{{ pr.name }}</h3>
