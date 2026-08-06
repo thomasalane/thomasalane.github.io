@@ -346,12 +346,24 @@
             var hot = Math.max(na.charge, nb.charge);
             var alpha = base + hot * 0.4;
             ctx.strokeStyle = hot > 0.05
-              ? 'rgba(120,240,220,' + Math.min(0.85, alpha).toFixed(3) + ')'
+              ? 'rgba(190,250,240,' + Math.min(0.85, alpha).toFixed(3) + ')'
               : 'rgba(34,211,238,' + alpha.toFixed(3) + ')';
             ctx.beginPath();
             ctx.moveTo(ax, ay);
             ctx.lineTo(bx, by);
             ctx.stroke();
+
+            // Chromatic fringe, but only on edges that are actually carrying
+            // charge. The base pass is O(n^2) per plane, so a second stroke on
+            // every pair would roughly double the cost of the whole frame.
+            if (hot > 0.05) {
+              var off = 1.1 + hot * 1.5;
+              ctx.strokeStyle = 'rgba(255,46,136,' + Math.min(0.5, alpha * 0.72).toFixed(3) + ')';
+              ctx.beginPath();
+              ctx.moveTo(ax + off, ay);
+              ctx.lineTo(bx + off, by);
+              ctx.stroke();
+            }
           }
         }
 
@@ -365,7 +377,11 @@
           var ly = fy + (ty2 - fy) * p.t;
           var fade = Math.sin(p.t * Math.PI);
           var pr = (1.6 + p.e * 1.6) * cfg.z;
-          glowDot(lx, ly, pr, 160, 255, 235, Math.min(1, 0.9 * fade * p.e));
+          var amp = Math.min(1, 0.9 * fade * p.e);
+          // magenta lags a pixel behind the white core, so a travelling signal
+          // smears the way a bright point does through a cheap lens
+          glowDot(lx + 1.6, ly, pr * 0.85, 255, 46, 136, amp * 0.7);
+          glowDot(lx, ly, pr, 190, 255, 240, amp);
         }
 
         // nodes
@@ -381,7 +397,7 @@
           var rr = nd.r * (1 + glow * 1.25);
 
           if (glow > 0.12) {
-            if (nd.charge > near) glowDot(nx, ny, rr, 160, 255, 220, Math.min(1, 0.5 + nd.charge));
+            if (nd.charge > near) glowDot(nx, ny, rr, 255, 150, 205, Math.min(1, 0.5 + nd.charge));
             else glowDot(nx, ny, rr, 34, 211, 238, Math.min(1, cfg.alpha * (0.42 + near * 0.58)));
           } else {
             ctx.beginPath();
@@ -392,7 +408,7 @@
 
           // link the closest nodes to the cursor
           if (near > 0.25) {
-            ctx.strokeStyle = 'rgba(74,222,128,' + (near * 0.42).toFixed(3) + ')';
+            ctx.strokeStyle = 'rgba(255,46,136,' + (near * 0.42).toFixed(3) + ')';
             ctx.lineWidth = 0.7;
             ctx.beginPath();
             ctx.moveTo(nx, ny);
