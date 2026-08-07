@@ -244,7 +244,23 @@ a { color: inherit; text-decoration: none; }
 .nav-link.is-active { color: var(--accent); }
 .nav-link.is-active::before { right: 0; opacity: 0.55; }
 
-.nav-toggle, .nav-burger { display: none; }
+/* The menu checkbox must NOT be display:none. WebKit refuses to let a <label>
+   activate a form control that is display:none, so on iOS the burger renders
+   but tapping it does nothing — and a display:none control is unreachable by
+   keyboard everywhere. Hide it visually instead, and only take it out of the
+   tab order on desktop, where the burger never appears. */
+.nav-toggle {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip-path: inset(50%);
+  overflow: hidden; white-space: nowrap;
+}
+.nav-burger { display: none; }
+
+@media (min-width: 621px) {
+  .nav-toggle { display: none; }
+}
 
 /* ---------- shared bits ---------- */
 
