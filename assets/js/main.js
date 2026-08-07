@@ -24,9 +24,25 @@
           io.unobserve(e.target);
         }
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    // threshold must stay 0. It is a fraction of the ELEMENT's area, not the
+    // screen's, so anything taller than the viewport caps out below 1 — a long
+    // post's .prose can only ever reach viewport/article height, which on a
+    // phone is under 0.08. It would then never reveal and the article body
+    // would stay invisible. rootMargin alone decides when this fires.
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0 });
 
     els.forEach(function (el) { io.observe(el); });
+
+    // Belt and braces: if anything on screen is still hidden shortly after
+    // load, an observer misbehaved — show it. Scoped to what's actually in
+    // view so content further down still gets its reveal on scroll.
+    setTimeout(function () {
+      els.forEach(function (el) {
+        if (el.classList.contains('in')) return;
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in');
+      });
+    }, 2500);
   }
 
   /* ============================================================
@@ -214,8 +230,16 @@
     }
 
     function resize() {
-      W = canvas.clientWidth;
-      H = canvas.clientHeight;
+      // A canvas with no width/height attributes is intrinsically 300x150. On
+      // iOS Safari a deferred script can run before layout has settled, so
+      // clientWidth/Height read that default; the 300x150 world then gets
+      // stretched across the screen and every node looks enormous. Fall back
+      // to the viewport, and let the ResizeObserver below correct us once
+      // layout is real.
+      var w = canvas.clientWidth || window.innerWidth;
+      var h = canvas.clientHeight || window.innerHeight;
+      if (w === W && h === H) return;   // iOS fires resize as the URL bar
+      W = w; H = h;                     // hides; don't re-seed for that
       canvas.width = Math.floor(W * dpr);
       canvas.height = Math.floor(H * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -438,6 +462,14 @@
     window.addEventListener('resize', function () {
       clearTimeout(rt); rt = setTimeout(resize, 180);
     });
+
+    // The authoritative signal: fires as soon as the canvas has a real box,
+    // so a bad first measurement corrects itself instead of persisting.
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(function () { resize(); }).observe(canvas);
+    } else {
+      window.addEventListener('load', resize);
+    }
 
     document.addEventListener('visibilitychange', function () {
       if (document.hidden) { cancelAnimationFrame(raf); raf = null; }
